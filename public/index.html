@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Content Generator</title>
+</head>
+<body>
+  <h2>Generate Content with Gemini</h2>
+  <input type="text" id="prompt" placeholder="Enter your prompt..." style="width:300px;padding:5px">
+  <button onclick="generate()">Generate</button>
+  <div id="result" style="margin-top:20px"></div>
+
+  <script>
+    async function generate() {
+      const prompt = document.getElementById('prompt').value;
+      document.getElementById('result').innerHTML = '⏳ Generating...';
+
+      const res = await fetch('/api/proxy', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt })
+      });
+
+      const data = await res.json();
+      if (data.summary) {
+        document.getElementById('result').innerHTML = '<strong>Result:</strong><br>' + data.summary;
+      } else {
+        document.getElementById('result').innerHTML = '❌ Error: ' + (data.error || 'Unknown');
+      }
+    }
+  </script>
+</body>
+</html>
