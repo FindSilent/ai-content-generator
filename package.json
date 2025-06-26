@@ -1,7 +1,10 @@
 {
-  "name": "ai-content-proxy",
+  "name": "ai-content-generator",
   "version": "1.0.0",
-  "main": "proxy.js",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev"
+  },
   "dependencies": {
     "node-fetch": "^2.6.7"
   }
