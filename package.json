@@ -1,0 +1,13 @@
+{
+  "name": "ai-content-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.4.4",
+    "jsdom": "^24.0.0",
+    "node-fetch": "^2.6.7"
+  }
+}
