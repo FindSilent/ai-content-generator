@@ -1,12 +1,16 @@
 export default async function handler(req, res) {
+  // Thiết lập các header CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
+  // Xử lý yêu cầu preflight (OPTIONS)
   if (req.method === 'OPTIONS') {
+    console.log('Handling OPTIONS request');
     return res.status(200).end();
   }
 
+  // Chỉ xử lý yêu cầu POST
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -42,7 +46,6 @@ export default async function handler(req, res) {
         if (attempt >= maxRetries) {
           return res.status(503).json({ error: 'Gemini API is overloaded, please try again later' });
         }
-        // Chờ 2 giây trước khi thử lại
         await new Promise((resolve) => setTimeout(resolve, 2000 * attempt));
         continue;
       }
