@@ -10,7 +10,7 @@
     {
       "src": "/proxy",
       "methods": ["POST", "OPTIONS"],
-      "dest": "api/proxy.js"
+      "dest": "/api/proxy.js"
     }
   ]
 }
