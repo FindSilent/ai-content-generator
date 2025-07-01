@@ -1,16 +1,13 @@
 export default async function handler(req, res) {
-  // Thiết lập các header CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Xử lý yêu cầu preflight (OPTIONS)
   if (req.method === 'OPTIONS') {
     console.log('Handling OPTIONS request');
     return res.status(200).end();
   }
 
-  // Chỉ xử lý yêu cầu POST
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
